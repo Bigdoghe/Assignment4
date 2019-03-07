@@ -6,6 +6,14 @@
 	</servlet>
 
 	<servlet>
+		<servlet-name>AdminLoginController</servlet-name>
+		<servlet-class>com.hxy.controller.AdminLoginController</servlet-class>
+	</servlet>
+
+
+
+
+	<servlet>
 		<servlet-name>RegisterController</servlet-name>
 		<servlet-class>com.hxy.controller.RegisterController</servlet-class>
 	</servlet>
@@ -25,6 +33,16 @@
 		<servlet-name>LoginController</servlet-name>
 		<url-pattern>/LoginController</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>AdminLoginController</servlet-name>
+		<url-pattern>/AdminLoginController</url-pattern>
+	</servlet-mapping>
+	
+
+	
+	
+	
 	<servlet-mapping>
 		<servlet-name>RegisterController</servlet-name>
 		<url-pattern>/RegisterController</url-pattern>

@@ -2,7 +2,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<form method="post" action="LoginController">
+	<form method="post" action="AdminLoginController">
 		<div style="padding: 100px 0 0 250px;">
 			<div id="login-box">
 				<h2>Login Page</h2>
@@ -16,9 +16,7 @@
 					<input name="password" type="password" class="form-login"
 						title="password" value="" size="30" maxlength="48" />
 				</div>
-				<br /> <span class="login-box-options"> New User? <a
-					href="register.jsp" style="margin-left: 30px;">Register Here</a>
-					<br /> <span class="login-box-options"> Admin User? <a
+					<br /> <span class="login-box-options"> End User? <a
 					href="adminlogin.jsp" style="margin-left: 30px;">Login Here</a>
 				</span> <br /> <br /> <input style="margin-left: 100px;" type="submit"
 					value="Login" />

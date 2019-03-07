@@ -9,21 +9,48 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 
-import com.hxy.utilities.ProductDao;
-import com.hxy.model.Product;
- 
-public class ProductService {
+import com.hxy.utilities.OrderDao;
+import com.hxy.model.Order;
+import com.hxy.model.User;
 
-    public int getProductNumber(){
+ 
+public class CheckoutService {
+
+    public void insertOrder(int productid, int quantity) {
+    	Session session = OrderDao.openSession(); 
+        
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();         
+            Order order = new Order(productid, quantity);
+   	        session.save(order);    
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        } 
+    }
+	
+	
+	
+	
+	
+	
+	public int getNumofOrder(){
     	
     	Long count = 0L;
-    	Session session = ProductDao.openSession();
+    	Session session = OrderDao.openSession();
         Transaction tx = null;
-        Product product = null;
+        Order order = null;
         try {
             tx = session.getTransaction();
             tx.begin();
-            Query query = session.createQuery("select count(*) from Product");
+            Query query = session.createQuery("select count(*) from Order");
             count = (Long)query.uniqueResult();
             tx.commit();
         } catch (Exception e) {
@@ -39,15 +66,15 @@ public class ProductService {
 	
 	
 	
-	public Product getProductByProductName(String productname) {
-        Session session = ProductDao.openSession();
+	public Order getOrderByOrderId(int orderid) {
+        Session session = OrderDao.openSession();
         Transaction tx = null;
-        Product product = null;
+        Order order = null;
         try {
             tx = session.getTransaction();
             tx.begin();
-            Query query = session.createQuery("from Product where productname='"+productname+"'");
-            product = (Product)query.uniqueResult();
+            Query query = session.createQuery("from Order where id='"+orderid+"'");
+            order = (Order)query.uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -57,17 +84,17 @@ public class ProductService {
         } finally {
             session.close();
         }
-        return product;
+        return order;
     }
      
-    public List<Product> getListOfProducts(){
-        List<Product> list = new ArrayList<Product>();
-        Session session = ProductDao.openSession();
+    public List<Order> getListOfOrders(){
+        List<Order> list = new ArrayList<Order>();
+        Session session = OrderDao.openSession();
         Transaction tx = null;       
         try {
             tx = session.getTransaction();
             tx.begin();
-            list = session.createQuery("from Product").list();                       
+            list = session.createQuery("from Order").list();                       
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

@@ -23,7 +23,7 @@
 			%>
 			<b>Welcome <%=user.getUsername()%></b> <br /> <a href="logout.jsp">Logout</a>
 
-       <form action = "checkout.jsp" method = "post">
+       <form action = "ProductController" method = "post">
 			<table >
 				<thead>
 					<tr>
@@ -49,7 +49,7 @@
 						<td><%=p.getPrice()%></td>
 						<td><%=p.getDescription()%></td>
 						<td><SELECT name="<%="quantity"+i%>" tabindex="10">
-								<Option value="select">--</option>
+								<Option value= "<%= 0%>">--</option>
 								<%
 									for (int j = 0; j < 10; j++) {
 								%>
@@ -63,6 +63,8 @@
 							<%
 								i++;
 							%></td>
+
+					
 					</tr>
 					<%
 						}

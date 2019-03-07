@@ -31,11 +31,11 @@ table.inner {
 </head>
 <body>
 	<h3>User Registration Form</h3>
-	<form action="Register Controller" method="POST">
+	<form action="RegisterController" method="POST">
 		<table align="center" cellpadding="10">
 			<tr>
 				<td>User Name</td>
-				<td><input type="text" name="userId" maxlength="100" /></td>
+				<td><input type="text" name="username" maxlength="100" /></td>
 			</tr>
 			<tr>
 				<td>Password</td>

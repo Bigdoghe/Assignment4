@@ -15,8 +15,9 @@ public boolean register(User user){
      Transaction tx = null;
      try {
          tx = session.getTransaction();
-         tx.begin();
-         session.saveOrUpdate(user);       
+         tx.begin();         
+         User usernew = new User(user.getUsername(), user.getPassword());
+	     session.save(usernew);    
          tx.commit();
      } catch (Exception e) {
          if (tx != null) {

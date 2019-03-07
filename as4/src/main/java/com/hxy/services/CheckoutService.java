@@ -16,15 +16,19 @@ import com.hxy.model.User;
  
 public class CheckoutService {
 
-    public void insertOrder(int productid, int quantity) {
+    public void insertOrder(List<Order> list) {
     	Session session = OrderDao.openSession(); 
         
         Transaction tx = null;
         try {
             tx = session.getTransaction();
-            tx.begin();         
-            Order order = new Order(productid, quantity);
-   	        session.save(order);    
+            tx.begin(); 
+            Order ordernew = new Order();
+            for (Order o : list) {
+            	ordernew = new Order(o.getProductid(), o.getQuantity());
+       	        session.save(ordernew);  
+            }
+              
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

@@ -37,7 +37,7 @@ public boolean isUserExists(User user){
      try{
          tx = session.getTransaction();
          tx.begin();
-         Query query = session.createQuery("from User where userId='"+user.getUsername()+"'");
+         Query query = session.createQuery("from User where username='"+user.getUsername()+"'");
          User u = (User)query.uniqueResult();
          tx.commit();
          if(u!=null) result = true;

@@ -17,8 +17,7 @@
 </head>
 <body>
 
-
-	<table>
+		<table>
 		<thead>
 			<tr>
 				<th>Product ID</th>
@@ -46,20 +45,19 @@
 				<td><%=session.getAttribute("quantity" + i)%></td>
 				<td><%=session.getAttribute("pricetotal" + i)%></td>
 				<td>
-					<form action="RemoveProductController" method="post">
+                    <form action = "CheckoutController", method = "POST">
+
 
 						<input type="hidden" name="RemoveId" value="<%=i%>" /> <input
 							type="hidden" name="Removepricetotal"
 							value="<%=session.getAttribute("pricetotal" + i)%>" /> <input
 							type="hidden" name="totalmoney"
-							value="<%=session.getAttribute("total")%>" /> <input
-							type="hidden" name="<%="Quantity"+i%>"
-							value="<%=session.getAttribute("quantity" + i)%>" /> <input
-							type="hidden" name="<%="productid"+i%>"+i value="<%=p.getId()%>" /> <input
-							type="submit" value="Remove" name="remove">
+							value="<%=session.getAttribute("total")%>" /> 
 
-
-					</form>
+                        <input type="submit" value="Remove" name="<%="remove"+ i%>"/>
+					
+							
+							</form>
 				</td>
 			</tr>
 			<%
@@ -73,18 +71,39 @@
 				<td></td>
 				<td></td>
 				<td><%=session.getAttribute("total")%></td>
-				<form action="CheckoutController" method="post">
+			
 
-					<input
-							type="hidden" name="length" value="<%=i%>" />
-					<input
-							type="submit" value="Checkout" name="checkout" >
-
-				</form>
+					
+				
 			</tr>
 
 		</tbody>
 	</table>
+<form action = "CheckoutController", method = "POST">
+	
+
+	<%
+				ProductService productservice0 = new ProductService();
+				List<Product> list0 = productservice.getListOfProducts();
+				int j = 0;
+				for (Product p : list) {
+	%>
+	<input
+							type="hidden" name="<%="quantitycheck"+ j%>"
+							value="<%=session.getAttribute("quantity" + j)%>" /> <input
+							type="hidden" name="<%="productid"+j%>" value="<%=p.getId()%>" /> 
+	<%
+				j++;
+				}
+			
+	%>
+	
+	
+	   <input
+							type="hidden" name="length" value="<%=i%>" />
+					<input
+							type="submit" value="Checkout" name="checkout" >
+	</form>
 
 </body>
 </html>

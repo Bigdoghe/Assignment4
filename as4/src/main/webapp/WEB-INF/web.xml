@@ -14,11 +14,7 @@
 		<servlet-name>ProductController</servlet-name>
 		<servlet-class>com.hxy.controller.ProductController</servlet-class>
 	</servlet>
-	
-		<servlet>
-		<servlet-name>RemoveProductController</servlet-name>
-		<servlet-class>com.hxy.controller.RemoveProductController</servlet-class>
-	</servlet>
+
 	
 	<servlet>
 		<servlet-name>CheckoutController</servlet-name>
@@ -37,11 +33,6 @@
 	<servlet-mapping>
 		<servlet-name>ProductController</servlet-name>
 		<url-pattern>/ProductController</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>RemoveProductController</servlet-name>
-		<url-pattern>/RemoveProductController</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>

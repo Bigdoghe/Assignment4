@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Registration Form</title>
+<title>Add product Form</title>
 <style type="text/css">
 h3 {
 	font-family: Calibri;
@@ -30,20 +30,24 @@ table.inner {
 </style>
 </head>
 <body>
-	<h3>User Registration Form</h3>
-	<form action="RegisterController" method="POST">
+	<h3>Add Product</h3>
+	<form action="ProductController" method="POST">
 		<table align="center" cellpadding="10">
 			<tr>
-				<td>User Name</td>
-				<td><input type="text" name="username" maxlength="100" /></td>
+				<td>productname</td>
+				<td><input type="text" name="productname" maxlength="100" /></td>
 			</tr>
 			<tr>
-				<td>Password</td>
-				<td><input type="password" name="password" maxlength="100" /></td>
+				<td>price</td>
+				<td><input type="text" name="price" maxlength="100" /></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Submit"> <input type="reset" value="Reset">
+				<td>description</td>
+				<td><input type="text" name="description" maxlength="100" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name = "addition"
+					value="Addproduct"> <input type="reset" value="Reset">
 				</td>
 			</tr>
 		</table>

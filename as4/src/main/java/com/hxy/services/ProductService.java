@@ -9,12 +9,113 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 
+import com.hxy.utilities.HibernateUtil;
 import com.hxy.utilities.ProductDao;
 import com.hxy.model.Product;
+import com.hxy.model.User;
  
 public class ProductService {
-
-    public int getProductNumber(){
+	
+	
+	public boolean register(Product product){
+	     Session session = ProductDao.openSession();
+	     if(isProductExists(product)) return false;  
+	     
+	     Transaction tx = null;
+	     try {
+	         tx = session.getTransaction();
+	         tx.begin();         
+	         Product productnew = new Product(product.getProductname(), product.getPrice(),product.getDescription());
+		     session.save(productnew);    
+	         tx.commit();
+	     } catch (Exception e) {
+	         if (tx != null) {
+	             tx.rollback();
+	         }
+	         e.printStackTrace();
+	     } finally {
+	         session.close();
+	     } 
+	     return true;
+	}
+	
+	
+	
+	
+	public boolean isProductExists(Product product){
+	     Session session = ProductDao.openSession();
+	     boolean result = false;
+	     Transaction tx = null;
+	     try{
+	         tx = session.getTransaction();
+	         tx.begin();
+	         Query query = session.createQuery("from Product where productname='"+product.getProductname()+"'");
+	         Product p = (Product)query.uniqueResult();
+	         tx.commit();
+	         if(p!=null) result = true;
+	     }catch(Exception ex){
+	         if(tx!=null){
+	             tx.rollback();
+	         }
+	     }finally{
+	         session.close();
+	     }
+	     return result;
+	}
+	
+	
+	
+	
+    public void deleteproduct(int productid) {
+    	Session session = ProductDao.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            System.out.println("run");
+            Query query = session.createQuery("delete from Product where id= :productid"); 
+            query.setParameter("productid", productid);
+            query.executeUpdate();
+            System.out.println("run2");
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+	
+    public void updateproduct(int productid,Product product) {
+    	Session session = ProductDao.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            System.out.println("run");
+            String productname = product.getProductname();
+            double price = product.getPrice();
+            String description = product.getDescription();
+            Query query = session.createQuery("update from Product set productname='"+productname+"', price ='"+price+"', description ='"+description+"' where id='"+productid+"'"); 
+            query.executeUpdate();
+            System.out.println("run2");
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+	
+	
+	
+	
+	public int getProductNumber(){
     	
     	Long count = 0L;
     	Session session = ProductDao.openSession();

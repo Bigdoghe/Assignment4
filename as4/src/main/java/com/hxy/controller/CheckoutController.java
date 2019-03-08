@@ -20,7 +20,6 @@ public class CheckoutController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("checkout") == null) {
 			int i = Integer.parseInt(request.getParameter("RemoveId"));
-			System.out.println(i);
 			double curmoney = Double.parseDouble(request.getParameter("Removepricetotal"));
 			double tomoney = Double.parseDouble(request.getParameter("totalmoney"));
 			tomoney = tomoney - curmoney;

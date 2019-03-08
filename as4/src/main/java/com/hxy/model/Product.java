@@ -19,9 +19,8 @@ public class Product {
 	public Product() {}
 	
 	
-	public Product(int id, String productname, double price, String description) {
+	public Product(String productname, double price, String description) {
 		super();
-		this.id = id;
 		this.productname = productname;
 		this.price = price;
 		this.description = description;

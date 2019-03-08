@@ -17,7 +17,7 @@
 						title="password" value="" size="30" maxlength="48" />
 				</div>
 					<br /> <span class="login-box-options"> End User? <a
-					href="adminlogin.jsp" style="margin-left: 30px;">Login Here</a>
+					href="login.jsp" style="margin-left: 30px;">Login Here</a>
 				</span> <br /> <br /> <input style="margin-left: 100px;" type="submit"
 					value="Login" />
 			</div>

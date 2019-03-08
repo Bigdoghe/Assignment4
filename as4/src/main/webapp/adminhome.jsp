@@ -25,7 +25,7 @@
 			%>
 			<b>Welcome <%=user.getUsername()%></b> <br /> <a href="logout.jsp">Logout</a>
 
-       <form action = "ProductController" method = "post">
+    
 			<table >
 				<thead>
 					<tr>
@@ -43,14 +43,21 @@
 						int i = 0;
 						for (Product p : list) {
 					%>
+					   <form action = "ProductController" method = "post">
 					<tr>
 						<td><%=p.getId()%></td>
 						<td><%=p.getProductname()%></td>
 						<td><%=p.getPrice()%></td>
 						<td><%=p.getDescription()%></td>
-						<td><a href="product.jsp" class="btn btn-default">Delete Product</a></td>
+						<td>
+						<input type="submit" value="delete" name="delete"/>
+						
+						</td>
 					
 					</tr>
+					<input type="hidden" value="<%=p.getId()%>" name="deletenum"/>
+					
+						</form>
 					<%
 						}
 					%>
@@ -59,7 +66,22 @@
 			</table> 
 			<a href="addproduct.jsp" class="btn btn-default">Add Product</a>
 			
-		</form>
+			<form action ="ProductController", method = post>
+			<table align="center" cellpadding="10">
+			<tr>
+				<td>productid you want to update</td>
+				<td><input type="text" name="productid" maxlength="100" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name = "idupdate"
+					value="Updateproduct"> 
+				</td>
+			</tr>
+		    </table>
+			
+			
+			</form>
          
          
          <br /></div>

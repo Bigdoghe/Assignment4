@@ -1,3 +1,6 @@
+
+
+
 <%@page import="java.util.List"%>
 <%@page import="com.hxy.services.LoginService"%>
 <%@page import="java.util.Date"%>
@@ -98,7 +101,12 @@
 			
 	%>
 	
-	
+	      <%
+				User user = (User) session.getAttribute("user");
+			%>
+			<input
+							type="hidden" name="username" value="<%=user.getUsername()%>" />
+			
 	   <input
 							type="hidden" name="length" value="<%=i%>" />
 					<input

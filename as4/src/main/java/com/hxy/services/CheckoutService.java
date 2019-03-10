@@ -25,7 +25,7 @@ public class CheckoutService {
             tx.begin(); 
             Order ordernew = new Order();
             for (Order o : list) {
-            	ordernew = new Order(o.getProductid(), o.getQuantity());
+            	ordernew = new Order(o.getProductid(), o.getQuantity(),o.getUsername());
        	        session.save(ordernew);  
             }
               

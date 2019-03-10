@@ -31,6 +31,7 @@ public class CheckoutController extends HttpServlet {
 		} 
 		else {
 			int orderlength = 0;
+			String username = request.getParameter("username");
 			orderlength = Integer.parseInt(request.getParameter("length"));
 			int[] quantitylastarray = new int[orderlength];
 			int[] productidarray = new int[orderlength];
@@ -39,9 +40,12 @@ public class CheckoutController extends HttpServlet {
 			List<Order> list = new ArrayList<Order>();
 			for (int i = 0; i < orderlength; i++) {
 				quantitylastarray[i] = Integer.parseInt(request.getParameter("quantitycheck" + i));
-				productidarray[i] = Integer.parseInt(request.getParameter("productid" + i));
-				order = new Order(productidarray[i], quantitylastarray[i]);
-				list.add(order);
+				if(quantitylastarray[i]!=0) 
+				{
+					productidarray[i] = Integer.parseInt(request.getParameter("productid" + i));
+					order = new Order(productidarray[i], quantitylastarray[i],username);
+					list.add(order);
+				}
 
 			}
 			checkoutService.insertOrder(list);

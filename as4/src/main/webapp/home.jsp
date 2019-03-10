@@ -33,7 +33,7 @@
 						<th>Product Description</th>
 						<th>Quantity</th>
 						<th>Check box</th>
-						<th>Price Total</th>
+
 					</tr>
 				</thead>
 				<tbody>

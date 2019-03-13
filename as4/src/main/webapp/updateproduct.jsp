@@ -1,3 +1,6 @@
+
+<%@page import="com.hxy.model.Product"%>
+<%@page import="com.hxy.services.ProductService"%>
 <html>
 <head>
 <title>Add product Form</title>
@@ -36,17 +39,22 @@ table.inner {
 			
 			<b>You are updating  product number <%=session.getAttribute("productid")%></b>
 			<input type ="hidden" name="productid" value="<%= session.getAttribute("productid")%>" >
+			<% 
+			ProductService productserviceupdate = new ProductService();
+			Product product = productserviceupdate.getProductByProductId(Integer.parseInt( (String) session.getAttribute("productid")));
+			%>
+			
 			<tr>
 				<td>productname</td>
-				<td><input type="text" name="productname" maxlength="100" /></td>
+				<td><input type="text" name="productname"  value=<%=product.getProductname() %>    maxlength="100" /></td>
 			</tr>
 			<tr>
 				<td>price</td>
-				<td><input type="text" name="price" maxlength="100" /></td>
+				<td><input type="text" name="price" value=<%=product.getPrice() %> maxlength="100" /></td>
 			</tr>
 			<tr>
 				<td>description</td>
-				<td><input type="text" name="description" maxlength="100" /></td>
+				<td><input type="text" name="description" value=<%=product.getDescription() %> maxlength="100" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" name = "update"

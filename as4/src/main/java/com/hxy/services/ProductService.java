@@ -168,7 +168,7 @@ public class ProductService {
         try {
             tx = session.getTransaction();
             tx.begin();
-            Query query = session.createQuery("from Product where row='"+productid+"'");
+            Query query = session.createQuery("from Product where id='"+productid+"'");
             product = (Product)query.uniqueResult();
             tx.commit();
         } catch (Exception e) {

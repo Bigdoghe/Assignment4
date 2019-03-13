@@ -3,7 +3,9 @@
 <%@page import="java.util.Date"%>
 <%@page import="com.hxy.model.AdminUser"%>
 <%@page import="com.hxy.model.Product"%>
+<%@page import="com.hxy.model.Order"%>
 <%@page import="com.hxy.services.ProductService"%>
+<%@page import="com.hxy.services.CheckoutService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -78,10 +80,51 @@
 					value="Updateproduct"> 
 				</td>
 			</tr>
+			</form>
 		    </table>
 			
 			
-			</form>
+		<table >
+				<thead>
+					<tr>
+						<th>Order ID</th>
+						<th>Product id</th>
+						<th>Product name</th>
+						<th>Quantity</th>
+						<th>Ordername</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					    CheckoutService orderservice = new CheckoutService();
+						ProductService productservicename = new ProductService();
+						List<Order> listnew = orderservice.getListOfOrders();
+						Product productname = new Product();
+						int idtemp = 0;
+						for (Order o: listnew) {
+					%>
+					   
+					<tr>
+						<td><%=o.getId()%></td>
+						<td><%=o.getProductid()%></td>
+						<%
+						idtemp = o.getProductid();
+						productname =  productservicename.getProductByProductId(idtemp);
+						%>
+						<td><%= productname.getProductname()  %></td>
+						<td><%=o.getQuantity()%></td>
+						<td><%=o.getUsername()%></td>
+					
+					
+					</tr>
+		
+					<%
+						}
+					%>
+					<tbody>
+      
+			</table> 
          
          
          <br /></div>

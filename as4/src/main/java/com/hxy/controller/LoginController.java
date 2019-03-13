@@ -14,12 +14,16 @@ public class LoginController extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
  
-     String username = request.getParameter("username");   
+     String username = request.getParameter("username");
      String password = request.getParameter("password");
      LoginService loginService = new LoginService();
      boolean result = loginService.authenticateUser(username, password);
      User user = loginService.getUserByUserName(username);
-     if(result == true){
+     if(username.equals("")) {
+    	 request.getSession().setAttribute( "username", "need to input username");
+    	 response.sendRedirect("login.jsp");
+     }
+     else if(result == true){
          request.getSession().setAttribute("user", user);      
          response.sendRedirect("home.jsp");
      }

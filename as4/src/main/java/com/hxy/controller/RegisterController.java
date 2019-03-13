@@ -32,7 +32,12 @@ public class RegisterController extends HttpServlet {
          out.println("<center>");
          if(result){
              out.println("<h1>Thanks for Registering with us :</h1>");
-             out.println("To login with new UserId and Password<a href=login.jsp>Click here</a>");
+             out.println("To login with new UserId and Password<a href=login.jsp>Click here</a> Redirect to login page in 5 seconds"  );
+             request.getSession().removeAttribute("username");
+             request.getSession().removeAttribute("password");
+             request.getSession().invalidate(); 
+             response.setHeader("Refresh", "5;url=login.jsp"); 
+             
          }else{
              out.println("<h1>Registration Failed</h1>");
              out.println("To try again<a href=register.jsp>Click here</a>");

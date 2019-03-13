@@ -5,11 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Checkout finish</title>
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
 </head>
 <body>
 <center>
      <h1>Your Order Was successful </h1>
-     To Buy again <a href="home.jsp">click here</a>.
+     To Buy again <a href="home.jsp">click here</a>
+          Redirecting to home page after 5 seconds
+     <% response.setHeader("Refresh", "5;url=home.jsp"); %>
 </center>
 </body>
 </html>

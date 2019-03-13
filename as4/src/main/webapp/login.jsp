@@ -8,7 +8,7 @@
 				<h2>Login Page</h2>
 				<div id="login-box-name" style="margin-top: 20px;">Username:</div>
 				<div id="login-box-field" style="margin-top: 20px;">
-					<input name="username" class="form-login" title="username" value=""
+					<input name="username" type="text" title="username" value="Input you user name here"
 						size="30" maxlength="50" />
 				</div>
 				<div id="login-box-name">Password:</div>

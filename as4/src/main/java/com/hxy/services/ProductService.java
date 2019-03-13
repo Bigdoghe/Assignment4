@@ -160,6 +160,27 @@ public class ProductService {
         }
         return product;
     }
+	
+	public Product getProductByProductId(int productid) {
+        Session session = ProductDao.openSession();
+        Transaction tx = null;
+        Product product = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            Query query = session.createQuery("from Product where row='"+productid+"'");
+            product = (Product)query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return product;
+    }
      
     public List<Product> getListOfProducts(){
         List<Product> list = new ArrayList<Product>();

@@ -17,6 +17,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Check out</title>
+
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
 </head>
 <body>
 
@@ -30,6 +35,7 @@
 				<th>Quantity</th>
 				<th>Price Total</th>
 				<th>Remove item</th>
+				<th>Add item</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,9 +64,21 @@
 							value="<%=session.getAttribute("total")%>" /> 
 
                         <input type="submit" value="Remove" name="<%="remove"+ i%>"/>
-					
-							
-							</form>
+					</form>
+						 
+				</td>
+				<td>
+						<form action = "CheckoutController", method = "POST"> 
+						
+						<input type="hidden" name="AddId" value="<%=i%>" />
+						<input type="hidden" name="Addname" value="<%=p.getProductname()%>" />
+						<input
+							type="hidden" name="quantity"
+							value="<%=session.getAttribute("quantity" + i)%>" />
+						 <input type="text" value="" name="<%="add"+ i%>"/>
+						 <input type= "submit" value ="Addition" name="addition">
+						</form>	
+						
 				</td>
 			</tr>
 			<%
